@@ -3,6 +3,8 @@ export interface InputProps {
     handleChange: (
       event: React.ChangeEvent<HTMLInputElement>,
       setState: React.Dispatch<React.SetStateAction<number>>) => void,
-      stateType: React.Dispatch<React.SetStateAction<number>>
+      stateType: React.Dispatch<React.SetStateAction<number>>,
+      valueType?: string
+
   }
   

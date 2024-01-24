@@ -4,7 +4,7 @@ import Input from './components/Input';
 function App() {
   const [cartValue, setCartValue] = useState<number>(0);
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
-  const [cartItems, setCartItems] = useState(null);
+  const [cartItems, setCartItems] = useState<number>(0);
   
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>, 
@@ -24,6 +24,18 @@ function App() {
         labelText={"Cart value"}
         handleChange={handleChange}
         stateType={setCartValue}
+        valueType='€'
+        />
+        <Input 
+        labelText={"Delivery distance"}
+        handleChange={handleChange}
+        stateType={setDeliveryDistance}
+        valueType='m'
+        />
+        <Input 
+        labelText={"Amount of items"}
+        handleChange={handleChange}
+        stateType={setCartItems}
         />
       <button type='submit'>Calculate delivery price</button>
       </form>
