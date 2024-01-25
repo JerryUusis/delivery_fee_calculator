@@ -18,23 +18,19 @@ function App() {
     setState(newValue)
   }
 
-  const calculateCartPrice = (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
-
+  const calculateCartPrice = (cartItemsValue: number): number => {
     let totalPrice: number;
-    totalPrice = cartValue;
+    totalPrice = cartItemsValue;
+    let surcharge = 0;
 
-    // Calculate surcharge
+    // Calculate surcharge for small order
     if (totalPrice < 10) {
       // Round to two decimals
-      const surCharge = 10 - totalPrice;
-      totalPrice += surCharge
+      surcharge = 10 - totalPrice;
+      totalPrice += surcharge
       // Use the method below to print the correct rounding
-      // console.log("Surchage is ", parseFloat(surCharge.toFixed(2)))
-      // console.log("Total price is ", totalPrice)
     }
+    return parseFloat(surcharge.toFixed(2))
   }
 
   const calculateDistancePrice = (distanceLength: number): number => {
@@ -60,12 +56,31 @@ function App() {
     return itemAmount > 12 ? bigSurcharge : smallSurcharge;
   }
 
-  // Remember to put onSubmit on the form element
+  const calculateDeliveryTotal = (
+    event: React.FormEvent<HTMLFormElement>,
+    itemsValue: number, distance: number, itemsAmount: number
+  ): void => {
+    event.preventDefault();
+    const smallCartSurcharge: number = calculateCartPrice(itemsValue);
+    const distanceSurcharge: number = calculateDistancePrice(distance);
+    const itemsAmountSurcharge: number = calculateItemsPrice(itemsAmount);
+
+    let totalSurcharge: number = smallCartSurcharge + distanceSurcharge + itemsAmountSurcharge;
+
+    if (itemsValue >= 200) {
+      totalSurcharge = 0;
+    }
+    else if (totalSurcharge > 15) {
+      totalSurcharge = 15;
+    }
+    console.log("Delivery price is", totalSurcharge)
+    console.log("Total is", totalSurcharge + cartValue)
+  }
 
   return (
     <div>
       <h1>Delivery fee calculator</h1>
-      <form >
+      <form onSubmit={(event) => calculateDeliveryTotal(event, cartValue, deliveryDistance, cartItems)}>
         <Input
           labelText={"Cart value"}
           handleChange={handleChange}
