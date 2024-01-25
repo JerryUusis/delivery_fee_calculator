@@ -18,29 +18,15 @@ function App() {
     setState(newValue)
   }
 
-  const calculateDeliveryPrice = (distanceLength: number) => {
-    const minimumPrice: number = 1;
+  const calculateDeliveryPrice = (distanceLength: number) : number => {
     const maximumPrice: number = 15;
     let distancePrice: number = 0;
 
     for (let i = 0; i < (distanceLength / 500); i++) {
       distancePrice += 1;
     }
-
-    if (distanceLength <= 500) {
-      return minimumPrice
-    }
-
-    else if (distanceLength > 500 && distanceLength < 7500) {
-      return distancePrice
-    }
-
-    else if (distanceLength >= 7500) {
-      return maximumPrice
-    }
+     return distanceLength < 7500 ? distancePrice : maximumPrice
   }
-
-  console.log(calculateDeliveryPrice(7000))
 
   const calculatePrice = (
     event: React.FormEvent<HTMLFormElement>
