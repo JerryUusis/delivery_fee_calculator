@@ -18,25 +18,24 @@ function App() {
     setState(newValue)
   }
 
-  const calculateDeliveryPrice = (distanceLength: number) : number => {
+  const calculateDeliveryPrice = (distanceLength: number): number => {
     const maximumPrice: number = 15;
     let distancePrice: number = 0;
 
     for (let i = 0; i < (distanceLength / 500); i++) {
       distancePrice += 1;
     }
-     return distanceLength < 7500 ? distancePrice : maximumPrice
+    // Delivery price doesn't increase after 7001m
+    return distanceLength <= 7000 ? distancePrice : maximumPrice;
   }
 
-  const calculatePrice = (
+  const calculateCartPrice = (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
 
     let totalPrice: number;
     totalPrice = cartValue;
-
-    let deliveryDist: number = deliveryDistance;
 
     // Calculate surcharge
     if (totalPrice < 10) {
@@ -49,10 +48,12 @@ function App() {
     }
   }
 
+  // Remember to put onSubmit on the form element
+
   return (
     <div>
       <h1>Delivery fee calculator</h1>
-      <form onSubmit={calculatePrice}>
+      <form >
         <Input
           labelText={"Cart value"}
           handleChange={handleChange}
