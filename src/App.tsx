@@ -40,6 +40,9 @@ function App() {
     for (let i = 0; i < (distanceLength / 500); i++) {
       distancePrice += 1;
     }
+    if (distanceLength === 0) {
+      return 1
+    }
     // Delivery price doesn't increase after 7001m
     return distanceLength <= 7000 ? distancePrice : maximumPrice;
   }
@@ -58,7 +61,9 @@ function App() {
 
   const calculateDeliveryTotal = (
     event: React.FormEvent<HTMLFormElement>,
-    itemsValue: number, distance: number, itemsAmount: number
+    itemsValue: number, 
+    distance: number, 
+    itemsAmount: number
   ): void => {
     event.preventDefault();
     const smallCartSurcharge: number = calculateCartPrice(itemsValue);
@@ -73,9 +78,13 @@ function App() {
     else if (totalSurcharge > 15) {
       totalSurcharge = 15;
     }
-    console.log("Delivery price is", totalSurcharge)
-    console.log("Total is", totalSurcharge + cartValue)
+    // console.log("Distance is", distance)
+    // console.log("itemsValue is", itemsValue)
+    // console.log("Items amount is", itemsAmount)
+    // console.log("Delivery price is", totalSurcharge)
+    // console.log("Total is", totalSurcharge + cartValue)
   }
+
 
   return (
     <div>
