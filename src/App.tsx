@@ -86,17 +86,20 @@ function App() {
           handleChange={handleChange}
           stateType={setCartValue}
           valueType='€'
+          dataTestId='cartValue'
         />
         <Input
           labelText={"Delivery distance"}
           handleChange={handleChange}
           stateType={setDeliveryDistance}
           valueType='m'
+          dataTestId='deliveryDistance'
         />
         <Input
           labelText={"Amount of items"}
           handleChange={handleChange}
           stateType={setCartItems}
+          dataTestId='numberOfItems'
         />
         <button type='submit'>Calculate delivery price</button>
       </form>

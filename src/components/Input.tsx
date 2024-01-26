@@ -1,6 +1,6 @@
 import { InputProps } from '../types/InputProps';
 
-const Input: React.FC<InputProps> = ({labelText, handleChange, stateType, valueType}) => {
+const Input: React.FC<InputProps> = ({labelText, handleChange, stateType, valueType, dataTestId}) => {
     return (
         <div className="input-container">
         <label htmlFor="">{labelText}</label>
@@ -9,6 +9,7 @@ const Input: React.FC<InputProps> = ({labelText, handleChange, stateType, valueT
           min="0" 
           step={valueType === "€" ? "0.01" : "1"} 
           onChange={(e) => handleChange(e, stateType)}
+          data-test-id=''
            />
         {valueType ? <p>{valueType}</p> : null}
       </div>
