@@ -68,8 +68,8 @@ function App() {
 
   const calculateDeliveryTotal = (
     event: React.FormEvent<HTMLFormElement>,
-    itemsValue: number, 
-    distance: number, 
+    itemsValue: number,
+    distance: number,
     itemsAmount: number
   ): void => {
     event.preventDefault();
@@ -86,7 +86,7 @@ function App() {
       totalSurcharge = 15;
     }
     setSummary((previous) => ({
-      ...previous, 
+      ...previous,
       orderValue: itemsValue,
       smallPurchaseSurcharge: smallCartSurcharge,
       distanceSurcharge: distanceSurcharge,
@@ -103,11 +103,12 @@ function App() {
     <div>
       <h1>Delivery fee calculator</h1>
       <form onSubmit={(event) => calculateDeliveryTotal(
-        event, 
-        cartValue, 
-        deliveryDistance, 
+        event,
+        cartValue,
+        deliveryDistance,
         cartItems)}>
         <Input
+          inputType={"number"}
           labelText={"Cart value"}
           handleChange={handleChange}
           stateType={setCartValue}
@@ -115,6 +116,7 @@ function App() {
           dataTestId='cartValue'
         />
         <Input
+          inputType={"number"}
           labelText={"Delivery distance"}
           handleChange={handleChange}
           stateType={setDeliveryDistance}
@@ -122,7 +124,15 @@ function App() {
           dataTestId='deliveryDistance'
         />
         <Input
+          inputType={"number"}
           labelText={"Amount of items"}
+          handleChange={handleChange}
+          stateType={setCartItems}
+          dataTestId='numberOfItems'
+        />
+        <Input
+          inputType={"date"}
+          labelText={"Date"}
           handleChange={handleChange}
           stateType={setCartItems}
           dataTestId='numberOfItems'
