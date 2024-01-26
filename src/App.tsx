@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import Input from './components/Input';
+import Date from './components/Date'
 import Summary from './types/SummaryTypes';
 
 function App() {
   const [cartValue, setCartValue] = useState<number>(0);
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
   const [cartItems, setCartItems] = useState<number>(0);
+  const [date, setDate] = useState<string>("")
   const [price, setPrice] = useState<number>(0);
   const [summary, setSummary] = useState<Summary>({
     orderValue: 0,
@@ -23,6 +25,10 @@ function App() {
     const newValue = isNaN(inputValue) ? 0 : inputValue;
 
     setState(newValue)
+  }
+
+  const chooseDate = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setDate(event.target.value)
   }
 
   const smallPurchaseSurcharge = (cartItemsValue: number): number => {
@@ -93,8 +99,6 @@ function App() {
       itemsSurcharge: itemsAmountSurcharge,
       totalPrice: totalSurcharge + itemsValue
     }))
-
-
     setPrice(totalSurcharge + itemsValue)
   }
 
@@ -108,7 +112,7 @@ function App() {
         deliveryDistance,
         cartItems)}>
         <Input
-          inputType={"number"}
+          id='cart'
           labelText={"Cart value"}
           handleChange={handleChange}
           stateType={setCartValue}
@@ -116,7 +120,7 @@ function App() {
           dataTestId='cartValue'
         />
         <Input
-          inputType={"number"}
+          id='distance'
           labelText={"Delivery distance"}
           handleChange={handleChange}
           stateType={setDeliveryDistance}
@@ -124,18 +128,14 @@ function App() {
           dataTestId='deliveryDistance'
         />
         <Input
-          inputType={"number"}
+          id='items'
           labelText={"Amount of items"}
           handleChange={handleChange}
           stateType={setCartItems}
           dataTestId='numberOfItems'
         />
-        <Input
-          inputType={"date"}
-          labelText={"Date"}
-          handleChange={handleChange}
-          stateType={setCartItems}
-          dataTestId='numberOfItems'
+        <Date
+          chooseDate={chooseDate}
         />
         <button type='submit'>Calculate delivery price</button>
       </form>
