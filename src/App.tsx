@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
 import Input from './components/Input';
+import Summary from './types/SummaryTypes';
 
 function App() {
   const [cartValue, setCartValue] = useState<number>(0);
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
   const [cartItems, setCartItems] = useState<number>(0);
-  const [price, setPrice] = useState<number>(0)
+  const [price, setPrice] = useState<number>(0);
+  const [summary, setSummary] = useState<Summary>({
+    orderValue: 0,
+    smallPurchaseSurcharge: 0,
+    distanceSurcharge: 0,
+    itemsSurcharge: 0
+  })
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -78,6 +85,16 @@ function App() {
     else if (totalSurcharge > 15) {
       totalSurcharge = 15;
     }
+    setSummary((previous) => ({
+      ...previous, 
+      orderValue: itemsValue,
+      smallPurchaseSurcharge: smallCartSurcharge,
+      distanceSurcharge: distanceSurcharge,
+      itemsSurcharge: itemsAmountSurcharge,
+      totalPrice: totalSurcharge + itemsValue
+    }))
+
+
     setPrice(totalSurcharge + itemsValue)
   }
 
@@ -112,7 +129,14 @@ function App() {
         />
         <button type='submit'>Calculate delivery price</button>
       </form>
-      <p>Delivery price: {price} €</p>
+      {/* <h2>Summary</h2>
+      <ul>
+        <li>Order value {summary.orderValue} €</li>
+        {summary.distanceSurcharge === 0 ? null : <li>Delivery {summary.distanceSurcharge} €</li>}
+        {summary.itemsSurcharge === 0 ? null : <li>Extra items {summary.itemsSurcharge} €</li>}
+        {summary.smallPurchaseSurcharge === 0 ? null :<li>Small purchase fee {summary.smallPurchaseSurcharge} €</li>}
+      </ul>
+      <p>Total: {price} €</p> */}
     </div>
   )
 }
