@@ -9,7 +9,7 @@ const Input: React.FC<InputProps> = ({labelText, handleChange, stateType, valueT
           min="0" 
           step={valueType === "€" ? "0.01" : "1"} 
           onChange={(e) => handleChange(e, stateType)}
-          data-test-id=''
+          data-test-id={dataTestId}
            />
         {valueType ? <p>{valueType}</p> : null}
       </div>
