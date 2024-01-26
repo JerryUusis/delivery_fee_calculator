@@ -1,20 +1,19 @@
 interface DateProps {
-    chooseDate: (event: React.ChangeEvent<HTMLInputElement>) => void
+    handleDateAndTime: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Date: React.FC<DateProps> = ({ chooseDate
-}) => {
-  return (
-    <div className="input-container">
-      <label htmlFor="dateInput">Date</label>
-      <input
-        id="dateInput"
-        type="date"
-        data-test-id="orderTime"
-        onChange={chooseDate}
-      />
-    </div>
-  )
+const DateInput: React.FC<DateProps> = ({ handleDateAndTime }) => {
+    return (
+        <div className="input-container">
+            <label htmlFor="dateInput">Date</label>
+            <input
+                id="dateInput"
+                type="datetime-local"
+                data-test-id="orderTime"
+                onChange={handleDateAndTime}
+            />
+        </div>
+    )
 }
 
-export default Date;
+export default DateInput;

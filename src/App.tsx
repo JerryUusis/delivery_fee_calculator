@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Input from './components/Input';
-import Date from './components/Date'
+import DateInput from './components/Date'
 import Summary from './types/SummaryTypes';
 
 function App() {
   const [cartValue, setCartValue] = useState<number>(0);
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
   const [cartItems, setCartItems] = useState<number>(0);
-  const [date, setDate] = useState<string>("")
+  const [date, setDate] = useState<{ time: string, weekday: string } | null>(null)
   const [price, setPrice] = useState<number>(0);
   const [summary, setSummary] = useState<Summary>({
     orderValue: 0,
@@ -27,8 +27,18 @@ function App() {
     setState(newValue)
   }
 
-  const chooseDate = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setDate(event.target.value)
+  const handleDateAndTime = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const selectedDate = event.target.value;
+    const dateObject = new Date(selectedDate);
+    // Premade interface for format options
+    const options: Intl.DateTimeFormatOptions = { weekday: 'long'}
+    const weekday = new Intl.DateTimeFormat('en-US', options).format(dateObject).toLowerCase();
+
+    const dateTimeObject = {
+      time: selectedDate.split("T")[1],
+      weekday: weekday
+    }
+    setDate(dateTimeObject)
   }
 
   const smallPurchaseSurcharge = (cartItemsValue: number): number => {
@@ -134,11 +144,12 @@ function App() {
           stateType={setCartItems}
           dataTestId='numberOfItems'
         />
-        <Date
-          chooseDate={chooseDate}
+        <DateInput
+          handleDateAndTime={handleDateAndTime}
         />
         <button type='submit'>Calculate delivery price</button>
       </form>
+      // Create separate summary component
       {/* <h2>Summary</h2>
       <ul>
         <li>Order value {summary.orderValue} €</li>
