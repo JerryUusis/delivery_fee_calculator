@@ -18,7 +18,7 @@ function App() {
     setState(newValue)
   }
 
-  const calculateCartPrice = (cartItemsValue: number): number => {
+  const smallPurchaseSurcharge = (cartItemsValue: number): number => {
     let totalPrice: number;
     totalPrice = cartItemsValue;
     let surcharge = 0;
@@ -66,7 +66,7 @@ function App() {
     itemsAmount: number
   ): void => {
     event.preventDefault();
-    const smallCartSurcharge: number = calculateCartPrice(itemsValue);
+    const smallCartSurcharge: number = smallPurchaseSurcharge(itemsValue);
     const distanceSurcharge: number = calculateDistancePrice(distance);
     const itemsAmountSurcharge: number = calculateItemsPrice(itemsAmount);
 
@@ -78,18 +78,18 @@ function App() {
     else if (totalSurcharge > 15) {
       totalSurcharge = 15;
     }
-    // console.log("Distance is", distance)
-    // console.log("itemsValue is", itemsValue)
-    // console.log("Items amount is", itemsAmount)
-    // console.log("Delivery price is", totalSurcharge)
-    // console.log("Total is", totalSurcharge + cartValue)
+    setPrice(totalSurcharge + itemsValue)
   }
 
 
   return (
     <div>
       <h1>Delivery fee calculator</h1>
-      <form onSubmit={(event) => calculateDeliveryTotal(event, cartValue, deliveryDistance, cartItems)}>
+      <form onSubmit={(event) => calculateDeliveryTotal(
+        event, 
+        cartValue, 
+        deliveryDistance, 
+        cartItems)}>
         <Input
           labelText={"Cart value"}
           handleChange={handleChange}
@@ -112,7 +112,7 @@ function App() {
         />
         <button type='submit'>Calculate delivery price</button>
       </form>
-      <p>Delivery price: 10€</p>
+      <p>Delivery price: {price} €</p>
     </div>
   )
 }
