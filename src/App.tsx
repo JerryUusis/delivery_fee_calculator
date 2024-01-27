@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import NumberInput from './components/NumberInput';
 import DateInput from './components/Date'
-import Summary from './types/SummaryTypes';
+import SummaryTypes from './types/SummaryTypes';
 import { DateTimeObject } from './types/DateObject';
+import SummaryDisplay from './components/SummaryDisplay';
 
 function App() {
   const [cartValue, setCartValue] = useState<number>(0);
@@ -10,7 +11,7 @@ function App() {
   const [cartItems, setCartItems] = useState<number>(0);
   const [date, setDate] = useState<DateTimeObject | null>(null)
   const [price, setPrice] = useState<number>(0);
-  const [summary, setSummary] = useState<Summary>({
+  const [summary, setSummary] = useState<SummaryTypes>({
     orderValue: 0,
     smallPurchaseSurcharge: 0,
     distanceSurcharge: 0,
@@ -158,7 +159,11 @@ function App() {
         />
         <button type='submit'>Calculate delivery price</button>
       </form>
-      // Create separate summary component
+        <SummaryDisplay 
+        {...summary}
+        price={price}
+        />
+
       {/* <h2>Summary</h2>
       <ul>
         <li>Order value {summary.orderValue} €</li>
