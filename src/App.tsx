@@ -41,7 +41,7 @@ function App() {
     const time = dateObject.split(" ")[4]
     const weekday = dateObject.split(" ")[0].toLowerCase()
 
-    const dateTimeObject : DateTimeObject = {
+    const dateTimeObject: DateTimeObject = {
       day: day,
       month: month,
       year: year,
@@ -107,19 +107,37 @@ function App() {
 
     if (itemsValue >= 200) {
       totalSurcharge = 0;
+      setSummary((previous) => ({
+        ...previous,
+        orderValue: itemsValue,
+        smallPurchaseSurcharge: 0,
+        distanceSurcharge: 0,
+        itemsSurcharge: 0
+      }))
+      setPrice(itemsValue)
     }
     else if (totalSurcharge > 15) {
       totalSurcharge = 15;
+      setSummary((previous) => ({
+        ...previous,
+        orderValue: itemsValue,
+        smallPurchaseSurcharge: 0,
+        distanceSurcharge: 15,
+        itemsSurcharge: 0
+      }))
+      setPrice(itemsValue + totalSurcharge)
     }
-    setSummary((previous) => ({
-      ...previous,
-      orderValue: itemsValue,
-      smallPurchaseSurcharge: smallCartSurcharge,
-      distanceSurcharge: distanceSurcharge,
-      itemsSurcharge: itemsAmountSurcharge,
-      totalPrice: totalSurcharge + itemsValue
-    }))
-    setPrice(totalSurcharge + itemsValue)
+    else {
+      setSummary((previous) => ({
+        ...previous,
+        orderValue: itemsValue,
+        smallPurchaseSurcharge: smallCartSurcharge,
+        distanceSurcharge: distanceSurcharge,
+        itemsSurcharge: itemsAmountSurcharge,
+        totalPrice: totalSurcharge + itemsValue
+      }))
+      setPrice(itemsValue + totalSurcharge)
+    }
   }
 
 
@@ -159,10 +177,10 @@ function App() {
         />
         <button type='submit'>Calculate delivery price</button>
       </form>
-        <SummaryDisplay 
+      <SummaryDisplay
         {...summary}
         price={price}
-        />
+      />
 
       {/* <h2>Summary</h2>
       <ul>
