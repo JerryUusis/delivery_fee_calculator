@@ -1,6 +1,6 @@
-export interface InputProps {
+export interface NumberInputProps {
     labelText: string,
-    handleChange: (
+    handleNumberInput: (
       event: React.ChangeEvent<HTMLInputElement>,
       setState: React.Dispatch<React.SetStateAction<number>>) => void,
       stateType: React.Dispatch<React.SetStateAction<number>>,

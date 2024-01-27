@@ -1,9 +1,9 @@
-import { InputProps } from '../types/InputProps';
+import { NumberInputProps } from '../types/NumberInputProps';
 
-const Input: React.FC<InputProps> = ({
+const NumberInput: React.FC<NumberInputProps> = ({
   id,
   labelText,
-  handleChange,
+  handleNumberInput,
   stateType,
   valueType,
   dataTestId
@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({
         type="number"
         min="0"
         step={valueType === "€" ? "0.01" : "1"}
-        onChange={(event) => handleChange(event, stateType)}
+        onChange={(event) => handleNumberInput(event, stateType)}
         data-test-id={dataTestId}
       />
       {valueType ? <p>{valueType}</p> : null}
@@ -24,4 +24,4 @@ const Input: React.FC<InputProps> = ({
   )
 }
 
-export default Input;
+export default NumberInput;

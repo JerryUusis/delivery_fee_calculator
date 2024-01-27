@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Input from './components/Input';
+import NumberInput from './components/NumberInput';
 import DateInput from './components/Date'
 import Summary from './types/SummaryTypes';
 
@@ -16,7 +16,7 @@ function App() {
     itemsSurcharge: 0
   })
 
-  const handleChange = (
+  const handleNumberInput = (
     event: React.ChangeEvent<HTMLInputElement>,
     setState: React.Dispatch<React.SetStateAction<number>>
   ) => {
@@ -121,26 +121,26 @@ function App() {
         cartValue,
         deliveryDistance,
         cartItems)}>
-        <Input
+        <NumberInput
           id='cart'
           labelText={"Cart value"}
-          handleChange={handleChange}
+          handleNumberInput={handleNumberInput}
           stateType={setCartValue}
           valueType='€'
           dataTestId='cartValue'
         />
-        <Input
+        <NumberInput
           id='distance'
           labelText={"Delivery distance"}
-          handleChange={handleChange}
+          handleNumberInput={handleNumberInput}
           stateType={setDeliveryDistance}
           valueType='m'
           dataTestId='deliveryDistance'
         />
-        <Input
+        <NumberInput
           id='items'
           labelText={"Amount of items"}
-          handleChange={handleChange}
+          handleNumberInput={handleNumberInput}
           stateType={setCartItems}
           dataTestId='numberOfItems'
         />
