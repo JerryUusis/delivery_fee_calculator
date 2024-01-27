@@ -134,7 +134,6 @@ function App() {
         smallPurchaseSurcharge: smallCartSurcharge,
         distanceSurcharge: distanceSurcharge,
         itemsSurcharge: itemsAmountSurcharge,
-        totalPrice: totalSurcharge + itemsValue
       }))
       setPrice(itemsValue + totalSurcharge)
     }
