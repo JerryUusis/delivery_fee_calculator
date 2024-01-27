@@ -7,7 +7,7 @@ function App() {
   const [cartValue, setCartValue] = useState<number>(0);
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
   const [cartItems, setCartItems] = useState<number>(0);
-  const [date, setDate] = useState<{ time: string, weekday: string } | null>(null)
+  const [date, setDate] = useState<{ time: string, weekday: string, year: string, month: string, day: string } | null>(null)
   const [price, setPrice] = useState<number>(0);
   const [summary, setSummary] = useState<Summary>({
     orderValue: 0,
@@ -29,13 +29,21 @@ function App() {
 
   const handleDateAndTime = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const selectedDate = event.target.value;
-    const dateObject = new Date(selectedDate);
-    // Premade interface for format options
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long'}
-    const weekday = new Intl.DateTimeFormat('en-US', options).format(dateObject).toLowerCase();
+    // selectedDate = "yyyy-mm-ddThh:mm"
+    const dateObject = new Date(selectedDate).toString();
+    // dateObject sample "Wed Nov 27 2024 10:03:00 GMT+0200 (Eastern European Standard Time"
+
+    const day = dateObject.split(" ")[2]
+    const month = dateObject.split(" ")[1]
+    const year = dateObject.split(" ")[3]
+    const time = dateObject.split(" ")[4]
+    const weekday = dateObject.split(" ")[0]
 
     const dateTimeObject = {
-      time: selectedDate.split("T")[1],
+      day: day,
+      month: month,
+      year: year,
+      time: time,
       weekday: weekday
     }
     setDate(dateTimeObject)
