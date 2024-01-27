@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import NumberInput from './components/NumberInput';
 import DateInput from './components/Date'
 import Summary from './types/SummaryTypes';
+import { DateTimeObject } from './types/DateObject';
 
 function App() {
   const [cartValue, setCartValue] = useState<number>(0);
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
   const [cartItems, setCartItems] = useState<number>(0);
-  const [date, setDate] = useState<{ time: string, weekday: string, year: string, month: string, day: string } | null>(null)
+  const [date, setDate] = useState<DateTimeObject | null>(null)
   const [price, setPrice] = useState<number>(0);
   const [summary, setSummary] = useState<Summary>({
     orderValue: 0,
@@ -31,15 +32,15 @@ function App() {
     const selectedDate = event.target.value;
     // selectedDate = "yyyy-mm-ddThh:mm"
     const dateObject = new Date(selectedDate).toString();
-    // dateObject sample "Wed Nov 27 2024 10:03:00 GMT+0200 (Eastern European Standard Time"
+    // dateObject sample "Wed Nov 27 2024 10:03:00 GMT+0200 (Eastern European Standard Time)"
 
     const day = dateObject.split(" ")[2]
-    const month = dateObject.split(" ")[1]
+    const month = dateObject.split(" ")[1].toLowerCase()
     const year = dateObject.split(" ")[3]
     const time = dateObject.split(" ")[4]
-    const weekday = dateObject.split(" ")[0]
+    const weekday = dateObject.split(" ")[0].toLowerCase()
 
-    const dateTimeObject = {
+    const dateTimeObject : DateTimeObject = {
       day: day,
       month: month,
       year: year,
