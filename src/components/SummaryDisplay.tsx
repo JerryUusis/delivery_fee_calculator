@@ -26,7 +26,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
                     <li>Free delivery! (Cart value larger than 199€)</li>
                 </ul>
                 {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
-                <p>Total: {price} €</p>
+                <p className="total">Total: {price} €</p>
             </div>
         )
     }
@@ -37,10 +37,10 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
                 <h2>Summary</h2>
                 <p>Cart value {orderValue} €</p>
                 <ul>
-                    <li>Maximum delivery price reached {deliveryTotal}</li>
+                    <li>Maximum delivery price reached {deliveryTotal} €</li>
                 </ul>
                 {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
-                <p>Total: {price} €</p>
+                <p className="total">Total: {price} €</p>
             </div>
         )
     }
