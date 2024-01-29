@@ -21,12 +21,12 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
         return (
             <div className="summary-container">
                 <h2>Summary</h2>
-                <p>Cart value {orderValue} €</p>
                 <ul>
                     <li>Free delivery! (Cart value larger than 199€)</li>
                 </ul>
-                {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
-                <p className="total">Total: {price} €</p>
+                <p>Cart value {orderValue} €</p>
+                {deliveryTotal ? <p data-test-id="fee" className="total-amount">Delivery total {deliveryTotal} €</p> : null}
+                <p className="total">Total {parseFloat((price).toFixed(2))} €</p>
             </div>
         )
     }
@@ -35,12 +35,11 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
         return (
             <div className="summary-container">
                 <h2>Summary</h2>
-                <p>Cart value {orderValue} €</p>
-                <ul>
-                    <li>Maximum delivery price reached {deliveryTotal} €</li>
-                </ul>
-                {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
-                <p className="total">Total: {price} €</p>
+                <div className="summary-list">
+                    {deliveryTotal ? <p data-test-id="fee" className="total-amount">Delivery total {deliveryTotal} € (maximum)</p> : null}
+                    <p>Cart value {orderValue} €</p>
+                </div>
+                    <p className="total">Total {parseFloat((price).toFixed(2))} €</p>
             </div>
         )
     }
@@ -48,15 +47,17 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
     return (
         <div className="summary-container">
             <h2>Summary</h2>
-            {orderValue === 0 ? null : <p>Cart value {orderValue} €</p>}
-            <ul>
-                {distanceSurcharge === 0 ? null : <li>Distance cost {distanceSurcharge} €</li>}
-                {itemsSurcharge === 0 ? null : <li>Extra items {itemsSurcharge} €</li>}
-                {smallPurchaseSurcharge === 0 ? null : <li>Small purchase fee {smallPurchaseSurcharge} €</li>}
-                {rushHour === true ? <li>Rush hour multiplier for surcharge fees: {parseFloat((deliveryTotal / 1.2).toFixed(2))} € x 1.2 = {parseFloat((deliveryTotal).toFixed(2))} € </li> : null}
-            </ul>
-            {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
-            {price === 0 ? null : <p className="total">Total: {price} €</p>}
+            <div className="summary-list">
+            {deliveryTotal ? <p data-test-id="fee" className="total-amount">Delivery total {deliveryTotal} €</p> : null}
+                <ul>
+                    {distanceSurcharge === 0 ? null : <li>Distance cost {distanceSurcharge} €</li>}
+                    {itemsSurcharge === 0 ? null : <li>Extra items {itemsSurcharge} €</li>}
+                    {smallPurchaseSurcharge === 0 ? null : <li>Small purchase fee {smallPurchaseSurcharge} €</li>}
+                    {rushHour === true ? <li>Rush hour multiplier: {parseFloat((deliveryTotal / 1.2).toFixed(2))} € x 1.2 = {parseFloat((deliveryTotal).toFixed(2))} € </li> : null}
+                </ul>
+                {orderValue === 0 ? null : <p  className="total-amount">Cart value {orderValue} €</p>}
+            </div>
+            {price === 0 ? null : <p className="total">Total {parseFloat((price).toFixed(2))} €</p>}
         </div>
     )
 }

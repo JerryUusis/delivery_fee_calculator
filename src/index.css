@@ -116,14 +116,18 @@ input {
 
 .summary-container {
     position: relative;
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
-
-    width: 70%;
+    width: 75%;
     padding: 0.5rem;
     max-width: 550px;
     justify-content: space-around;
     border: var(--mid) 1px dashed;
+}
+
+.total-amount {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
 .summary-container h2 {
@@ -132,12 +136,12 @@ input {
     flex-direction: column;
     justify-self: start;
     align-self: flex-start;
+    margin-bottom: 1rem;
 }
 
 .summary-container ul {
     padding-left: 1rem;
-    padding: 1rem 0;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
 }
 
 .summary-container ul li {
@@ -150,5 +154,11 @@ input {
 
 .summary-container .total {
     font-weight: bold;
-    margin: 1rem 0 0;
+    border-top: dashed 1px var(--darkest);
+}
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
