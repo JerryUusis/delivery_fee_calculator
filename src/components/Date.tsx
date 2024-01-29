@@ -8,6 +8,7 @@ const DateInput: React.FC<DateProps> = ({ handleDateAndTime }) => {
             <label htmlFor="dateInput">Date</label>
             <input
                 required
+                min={new Date().toISOString().slice(0, -8)}
                 id="dateInput"
                 type="datetime-local"
                 data-test-id="orderTime"
