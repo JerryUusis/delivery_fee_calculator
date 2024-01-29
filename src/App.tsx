@@ -16,7 +16,8 @@ function App() {
     orderValue: 0,
     smallPurchaseSurcharge: 0,
     distanceSurcharge: 0,
-    itemsSurcharge: 0
+    itemsSurcharge: 0,
+    rushHour: false
   })
 
   const handleNumberInput = (
@@ -111,7 +112,7 @@ function App() {
     itemsValue: number,
     distance: number,
     itemsAmount: number,
-    rushHour: boolean 
+    rushHour: boolean
   ): void => {
     event.preventDefault();
     const smallCartSurcharge: number = smallPurchaseSurcharge(itemsValue);
@@ -120,6 +121,10 @@ function App() {
 
     let totalSurcharge: number = smallCartSurcharge + distanceSurcharge + itemsAmountSurcharge;
 
+    if (rushHour === true) {
+      totalSurcharge *= 1.2
+    }
+
     if (itemsValue >= 200) {
       totalSurcharge = 0;
       setSummary((previous) => ({
@@ -127,7 +132,8 @@ function App() {
         orderValue: itemsValue,
         smallPurchaseSurcharge: 0,
         distanceSurcharge: 0,
-        itemsSurcharge: 0
+        itemsSurcharge: 0,
+        rushHour: false
       }))
       setPrice(itemsValue)
     }
@@ -138,7 +144,8 @@ function App() {
         orderValue: itemsValue,
         smallPurchaseSurcharge: 0,
         distanceSurcharge: 15,
-        itemsSurcharge: 0
+        itemsSurcharge: 0,
+        rushHour: false
       }))
       setPrice(itemsValue + totalSurcharge)
     }
@@ -149,11 +156,11 @@ function App() {
         smallPurchaseSurcharge: smallCartSurcharge,
         distanceSurcharge: distanceSurcharge,
         itemsSurcharge: itemsAmountSurcharge,
+        rushHour
       }))
       setPrice(itemsValue + totalSurcharge)
     }
   }
-
 
   return (
     <div>
