@@ -114,7 +114,8 @@ input {
 /* Summary display area */
 
 .summary-container {
-    display: flex;
+    position: relative;
+    /* display: flex; */
     flex-direction: column;
     height: 45%;
     width: 70%;
@@ -124,8 +125,17 @@ input {
     border: var(--mid) 1px dashed;
 }
 
+.summary-container h2 {
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    align-self: flex-start;
+}
+
 .summary-container ul {
     padding-left: 1rem;
+    padding: 1rem 0;
+    margin: 1rem 0;
 }
 
 .summary-container ul li {
@@ -134,4 +144,9 @@ input {
 
 .summary-container ul li::before {
     content: "-";
+}
+
+.summary-container .total {
+    font-weight: bold;
+    margin: 1rem 0 0;
 }

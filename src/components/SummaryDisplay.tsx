@@ -48,7 +48,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
     return (
         <div className="summary-container">
             <h2>Summary</h2>
-            <p>Cart value {orderValue} €</p>
+            {orderValue === 0 ? null : <p>Cart value {orderValue} €</p>}
             <ul>
                 {distanceSurcharge === 0 ? null : <li>Distance cost {distanceSurcharge} €</li>}
                 {itemsSurcharge === 0 ? null : <li>Extra items {itemsSurcharge} €</li>}
@@ -56,7 +56,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
                 {rushHour === true ? <li>Rush hour multiplier for surcharge fees: {parseFloat((deliveryTotal / 1.2).toFixed(2))} € x 1.2 = {parseFloat((deliveryTotal).toFixed(2))} € </li> : null}
             </ul>
             {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
-            <p>Total: {price} €</p>
+            {price === 0 ? null : <p className="total">Total: {price} €</p>}
         </div>
     )
 }
