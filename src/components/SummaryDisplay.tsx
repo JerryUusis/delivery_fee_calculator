@@ -20,7 +20,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
     return (
         <div>
             <h2>Summary</h2>
-            <p>Purchase value {orderValue} €</p>
+            <p>Cart value {orderValue} €</p>
             <ul>
                 {distanceSurcharge === 0 ? <li>Free delivery!</li> : <li>Distance cost {distanceSurcharge} €</li>}
                 {itemsSurcharge === 0 ? null : <li>Extra items {itemsSurcharge} €</li>}
