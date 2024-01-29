@@ -19,7 +19,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
 
     if (orderValue >= 200) {
         return (
-            <div>
+            <div className="summary-container">
                 <h2>Summary</h2>
                 <p>Cart value {orderValue} €</p>
                 <ul>
@@ -33,7 +33,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
 
     else if (deliveryTotal >= 15) {
         return (
-            <div>
+            <div className="summary-container">
                 <h2>Summary</h2>
                 <p>Cart value {orderValue} €</p>
                 <ul>
@@ -46,7 +46,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
     }
 
     return (
-        <div>
+        <div className="summary-container">
             <h2>Summary</h2>
             <p>Cart value {orderValue} €</p>
             <ul>

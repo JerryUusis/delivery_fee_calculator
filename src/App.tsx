@@ -187,14 +187,14 @@ function App() {
             valueType='items'
             dataTestId='numberOfItems'
           />
-        <DateInput handleDateAndTime={handleDateAndTime}/>
-        <button type='submit'>Calculate delivery price</button>
+          <DateInput handleDateAndTime={handleDateAndTime} />
+          <button type='submit'>Calculate delivery price</button>
         </div>
       </form>
-      <SummaryDisplay
-        {...summary}
-        price={price}
-      />
+        <SummaryDisplay
+          {...summary}
+          price={price}
+        />
     </div>
   )
 }
