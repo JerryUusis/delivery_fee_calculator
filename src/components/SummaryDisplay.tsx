@@ -25,7 +25,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
                 {distanceSurcharge === 0 ? <li>Free delivery!</li> : <li>Distance cost {distanceSurcharge} €</li>}
                 {itemsSurcharge === 0 ? null : <li>Extra items {itemsSurcharge} €</li>}
                 {smallPurchaseSurcharge === 0 ? null : <li>Small purchase fee {smallPurchaseSurcharge} €</li>}
-                {rushHour === true ? <li>Rush hour multiplier for surchrage fees: {deliveryTotal} € x 1.2 = {parseFloat((deliveryTotal * 1.2).toFixed(2))} € </li> : null}
+                {rushHour === true ? <li>Rush hour multiplier for surchrage fees: {parseFloat((deliveryTotal * 0.8).toFixed(2))} € x 1.2 = {parseFloat((deliveryTotal).toFixed(2))} € </li> : null}
             </ul>
             {deliveryTotal ? <p>Delivery total {deliveryTotal} €</p> : null}
             <p>Total: {price} €</p>

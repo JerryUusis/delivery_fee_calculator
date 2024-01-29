@@ -124,6 +124,7 @@ function App() {
 
     if (rushHour === true) {
       totalSurcharge *= 1.2
+      console.log("Total surcharge got multiplied and is now", totalSurcharge)
     }
 
     if (itemsValue >= 200) {
