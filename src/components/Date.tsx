@@ -4,7 +4,7 @@ interface DateProps {
 
 const DateInput: React.FC<DateProps> = ({ handleDateAndTime }) => {
     return (
-        <div className="date-input-container">
+        <div className="input-container">
             <label htmlFor="date-input">Date</label>
             <input
                 required
@@ -14,6 +14,7 @@ const DateInput: React.FC<DateProps> = ({ handleDateAndTime }) => {
                 data-test-id="orderTime"
                 onChange={handleDateAndTime}
             />
+            <p></p>
         </div>
     )
 }

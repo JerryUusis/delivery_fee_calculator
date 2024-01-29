@@ -49,11 +49,11 @@
     display: inline;
 }
 
-.date-input-container label {
-    margin-right: 1rem;
+#date-input {
+    width: 40%;
 }
 
-#date-input {
-    width: 60%;
-    margin-right: auto;
+.input-fields-container button {
+    width: 33%;
+    margin: auto;
 }
