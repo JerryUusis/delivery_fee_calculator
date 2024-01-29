@@ -5,6 +5,15 @@
     --darkest: #004451;
 }
 
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+
+  /* font-family: 'Concert One', sans-serif; */
+
+/* Add more styles as needed */
+
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -21,6 +30,7 @@
 }
 
 .main-container {
+    font-family: "Noto Sans", sans-serif;
     height: 100%;
     width: 75%;
     display: flex;
@@ -31,6 +41,8 @@
 }
 
 .main-container h1 {
+    font-family: 'Concert One', sans-serif;
+    letter-spacing: 2px;
     width: 70%;
     max-width: 450px;
     color: var(--darkest);
@@ -39,6 +51,7 @@
 /* Form area */
 
 form {
+    
     height: 45%;
     width: 70%;
     max-width: 450px;
