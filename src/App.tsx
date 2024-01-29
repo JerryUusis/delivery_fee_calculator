@@ -19,6 +19,8 @@ function App() {
     deliveryTotal: 0
   })
 
+  const maximumDeliveryPrice: number = 15;
+
   const handleNumberInput = (
     event: React.ChangeEvent<HTMLInputElement>,
     setState: React.Dispatch<React.SetStateAction<number>>
@@ -69,7 +71,6 @@ function App() {
   }
 
   const calculateDistancePrice = (distanceLength: number): number => {
-    const maximumPrice: number = 15;
     let distancePrice: number = 0;
 
     for (let i = 0; i < (distanceLength / 500); i++) {
@@ -79,7 +80,7 @@ function App() {
       return 1
     }
     // Delivery price doesn't increase after 7001m
-    return distanceLength <= 7000 ? distancePrice : maximumPrice;
+    return distanceLength <= 7000 ? distancePrice : maximumDeliveryPrice;
   }
 
   const calculateItemsPrice = (itemAmount: number): number => {
@@ -125,13 +126,13 @@ function App() {
       }))
       setPrice(itemsValue)
     }
-    else if (totalSurcharge > 15) {
-      totalSurcharge = 15;
+    else if (totalSurcharge > maximumDeliveryPrice) {
+      totalSurcharge = maximumDeliveryPrice;
       setSummary((previous) => ({
         ...previous,
         orderValue: itemsValue,
         smallPurchaseSurcharge: 0,
-        distanceSurcharge: 15,
+        distanceSurcharge: maximumDeliveryPrice,
         itemsSurcharge: 0,
         rushHour: false,
         deliveryTotal: totalSurcharge
