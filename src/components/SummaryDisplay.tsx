@@ -25,7 +25,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
                 <ul>
                     <li>Free delivery! (Cart value larger than 199€)</li>
                 </ul>
-                {deliveryTotal ? <p>Delivery total {deliveryTotal} €</p> : null}
+                {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
                 <p>Total: {price} €</p>
             </div>
         )
@@ -39,7 +39,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
                 <ul>
                     <li>Maximum delivery price reached {deliveryTotal}</li>
                 </ul>
-                {deliveryTotal ? <p>Delivery total {deliveryTotal} €</p> : null}
+                {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
                 <p>Total: {price} €</p>
             </div>
         )
@@ -55,7 +55,7 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
                 {smallPurchaseSurcharge === 0 ? null : <li>Small purchase fee {smallPurchaseSurcharge} €</li>}
                 {rushHour === true ? <li>Rush hour multiplier for surcharge fees: {parseFloat((deliveryTotal / 1.2).toFixed(2))} € x 1.2 = {parseFloat((deliveryTotal).toFixed(2))} € </li> : null}
             </ul>
-            {deliveryTotal ? <p>Delivery total {deliveryTotal} €</p> : null}
+            {deliveryTotal ? <p data-test-id="fee">Delivery total {deliveryTotal} €</p> : null}
             <p>Total: {price} €</p>
         </div>
     )
