@@ -9,7 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
 
-  /* font-family: 'Concert One', sans-serif; */
+/* font-family: 'Concert One', sans-serif; */
 
 /* Add more styles as needed */
 
@@ -94,6 +94,11 @@ form {
     border: var(--lightest) solid 1px;
     border-radius: 3px;
     padding: 0.5rem 0;
+    transition: 125ms all;
+}
+
+.input-fields-container button:hover {
+    filter: drop-shadow(0 0 3px var(--mid));
 }
 
 .input-fields-container button:active {
