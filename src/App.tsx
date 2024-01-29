@@ -11,6 +11,7 @@ function App() {
   const [cartItems, setCartItems] = useState<number>(0);
   const [date, setDate] = useState<DateTimeObject | null>(null)
   const [price, setPrice] = useState<number>(0);
+  const [rushHour, setRushHour] = useState<boolean>(false)
   const [summary, setSummary] = useState<SummaryTypes>({
     orderValue: 0,
     smallPurchaseSurcharge: 0,
@@ -38,14 +39,20 @@ function App() {
     const day = dateObject.split(" ")[2]
     const month = dateObject.split(" ")[1].toLowerCase()
     const year = dateObject.split(" ")[3]
-    const time = dateObject.split(" ")[4]
+    const time = dateObject.split(" ")[4] // time is used to split to get hours and minutes
     const weekday = dateObject.split(" ")[0].toLowerCase()
+
+    
+    const hour = parseInt(time.split(":")[0])
+    const minute = parseInt(time.split(":")[1])
+
 
     const dateTimeObject: DateTimeObject = {
       day: day,
       month: month,
       year: year,
-      time: time,
+      minute: minute,
+      hour: hour,
       weekday: weekday
     }
     setDate(dateTimeObject)
@@ -96,12 +103,18 @@ function App() {
     event: React.FormEvent<HTMLFormElement>,
     itemsValue: number,
     distance: number,
-    itemsAmount: number
+    itemsAmount: number,
+    rushHour: boolean
   ): void => {
     event.preventDefault();
     const smallCartSurcharge: number = smallPurchaseSurcharge(itemsValue);
     const distanceSurcharge: number = calculateDistancePrice(distance);
     const itemsAmountSurcharge: number = calculateItemsPrice(itemsAmount);
+
+    // Check is it rush hour
+    // if (date?.day === "fri" &&  {
+
+    // }
 
     let totalSurcharge: number = smallCartSurcharge + distanceSurcharge + itemsAmountSurcharge;
 
@@ -147,7 +160,8 @@ function App() {
         event,
         cartValue,
         deliveryDistance,
-        cartItems)}>
+        cartItems,
+        rushHour)}>
         <NumberInput
           id='cart'
           labelText={"Cart value"}
