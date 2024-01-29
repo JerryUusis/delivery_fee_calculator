@@ -45,7 +45,7 @@ function App() {
 
     // Determine if it's rush hour during Fridays from 15-19
     let isRushHour: boolean;
-    if (weekday === "fri" && hour >= 15 && hour <= 19) {
+    if (weekday === "fri" && hour >= 15 && hour < 19) {
       isRushHour = true
     } else {
       isRushHour = false;

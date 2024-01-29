@@ -20,6 +20,11 @@
     align-items: center;
 }
 
+.main-container h1 {
+    width: 70%;
+    max-width: 450px;
+}
+
 form {
     height: 45%;
     width: 70%;
@@ -59,6 +64,10 @@ form {
     margin: auto;
 }
 
+input {
+    padding-left: 0.25rem;
+}
+
 /* Summary display area */
 
 .summary-container {
@@ -70,4 +79,16 @@ form {
     max-width: 450px;
     border: black solid 1px;
     justify-content: space-around;
+}
+
+.summary-container ul {
+    padding-left: 1rem;
+}
+
+.summary-container ul li {
+    list-style-type: none;
+}
+
+.summary-container ul li::before {
+    content: "-";
 }
