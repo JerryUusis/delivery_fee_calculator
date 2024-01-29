@@ -17,7 +17,8 @@ function App() {
     smallPurchaseSurcharge: 0,
     distanceSurcharge: 0,
     itemsSurcharge: 0,
-    rushHour: false
+    rushHour: false,
+    deliveryTotal: 0
   })
 
   const handleNumberInput = (
@@ -133,7 +134,8 @@ function App() {
         smallPurchaseSurcharge: 0,
         distanceSurcharge: 0,
         itemsSurcharge: 0,
-        rushHour: false
+        rushHour: false,
+        deliveryTotal: 0
       }))
       setPrice(itemsValue)
     }
@@ -145,7 +147,8 @@ function App() {
         smallPurchaseSurcharge: 0,
         distanceSurcharge: 15,
         itemsSurcharge: 0,
-        rushHour: false
+        rushHour: false,
+        deliveryTotal: totalSurcharge
       }))
       setPrice(itemsValue + totalSurcharge)
     }
@@ -156,9 +159,10 @@ function App() {
         smallPurchaseSurcharge: smallCartSurcharge,
         distanceSurcharge: distanceSurcharge,
         itemsSurcharge: itemsAmountSurcharge,
-        rushHour
+        rushHour,
+        deliveryTotal: parseFloat(totalSurcharge.toFixed(2))
       }))
-      setPrice(itemsValue + totalSurcharge)
+      setPrice(parseFloat((itemsValue + totalSurcharge).toFixed(2)))
     }
   }
 

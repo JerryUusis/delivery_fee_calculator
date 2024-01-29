@@ -4,6 +4,7 @@ interface SummaryTypes {
     distanceSurcharge: number;
     itemsSurcharge: number;
     rushHour: boolean
+    deliveryTotal: number
 }
 
 export default SummaryTypes;
