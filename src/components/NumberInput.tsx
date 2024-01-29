@@ -12,6 +12,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
     <div className="input-container">
       <label htmlFor={id}>{labelText}</label>
       <input
+        required
         id={id}
         type="number"
         min="0"

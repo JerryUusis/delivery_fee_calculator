@@ -7,6 +7,7 @@ const DateInput: React.FC<DateProps> = ({ handleDateAndTime }) => {
         <div className="input-container">
             <label htmlFor="dateInput">Date</label>
             <input
+                required
                 id="dateInput"
                 type="datetime-local"
                 data-test-id="orderTime"
