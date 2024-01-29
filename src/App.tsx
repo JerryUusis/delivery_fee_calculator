@@ -41,17 +41,9 @@ function App() {
 
     const hour = parseInt(time.split(":")[0])
 
-    const dateTimeObject: {
-      hour: number,
-      weekday: string
-    } = {
-      hour: hour,
-      weekday: weekday
-    }
-
     // Determine if it's rush hour during Fridays from 15-19
     let isRushHour: boolean;
-    if (dateTimeObject.weekday === "fri" && dateTimeObject.hour >= 15 && dateTimeObject.hour <= 19) {
+    if (weekday === "fri" && hour >= 15 && hour <= 19) {
       isRushHour = true
     } else {
       isRushHour = false;
