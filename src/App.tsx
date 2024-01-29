@@ -154,7 +154,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='main-container'>
       <h1>Delivery fee calculator</h1>
       <form onSubmit={(event) => calculateDeliveryTotal(
         event,
@@ -162,33 +162,34 @@ function App() {
         deliveryDistance,
         cartItems,
         rushHour)}>
-        <NumberInput
-          id='cart'
-          labelText={"Cart value"}
-          handleNumberInput={handleNumberInput}
-          stateType={setCartValue}
-          valueType='€'
-          dataTestId='cartValue'
-        />
-        <NumberInput
-          id='distance'
-          labelText={"Delivery distance"}
-          handleNumberInput={handleNumberInput}
-          stateType={setDeliveryDistance}
-          valueType='m'
-          dataTestId='deliveryDistance'
-        />
-        <NumberInput
-          id='items'
-          labelText={"Amount of items"}
-          handleNumberInput={handleNumberInput}
-          stateType={setCartItems}
-          dataTestId='numberOfItems'
-        />
-        <DateInput
-          handleDateAndTime={handleDateAndTime}
-        />
+        <div className="input-fields-container">
+          <NumberInput
+            id='cart'
+            labelText={"Cart value"}
+            handleNumberInput={handleNumberInput}
+            stateType={setCartValue}
+            valueType='€'
+            dataTestId='cartValue'
+          />
+          <NumberInput
+            id='distance'
+            labelText={"Delivery distance"}
+            handleNumberInput={handleNumberInput}
+            stateType={setDeliveryDistance}
+            valueType='m'
+            dataTestId='deliveryDistance'
+          />
+          <NumberInput
+            id='items'
+            labelText={"Amount of items"}
+            handleNumberInput={handleNumberInput}
+            stateType={setCartItems}
+            valueType='items'
+            dataTestId='numberOfItems'
+          />
+        <DateInput handleDateAndTime={handleDateAndTime}/>
         <button type='submit'>Calculate delivery price</button>
+        </div>
       </form>
       <SummaryDisplay
         {...summary}

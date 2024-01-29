@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#root {
+    height: 100vh;
+    width: 100vw;
+}
+
+.main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-fields-container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    border: solid red 1px;
+}
+
+.input-container,
+.date-input-container {
+    display: flex;
+    padding: 1rem 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-container label,
+.input-container p,
+.date-input-container label,
+.date-input-container p
+{
+    width: 25%;
+}
+
+.input-container input {
+    width: 40%;
+}
+
+.value-type {
+    display: inline;
+}
+
+.date-input-container label {
+    margin-right: 1rem;
+}
+
+#date-input {
+    width: 60%;
+    margin-right: auto;
+}

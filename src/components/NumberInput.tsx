@@ -20,7 +20,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         onChange={(event) => handleNumberInput(event, stateType)}
         data-test-id={dataTestId}
       />
-      {valueType ? <p>{valueType}</p> : null}
+      {valueType ? <p className='value-type'>{valueType}</p> : null}
     </div>
   )
 }

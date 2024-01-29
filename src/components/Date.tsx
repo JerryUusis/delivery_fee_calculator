@@ -4,12 +4,12 @@ interface DateProps {
 
 const DateInput: React.FC<DateProps> = ({ handleDateAndTime }) => {
     return (
-        <div className="input-container">
-            <label htmlFor="dateInput">Date</label>
+        <div className="date-input-container">
+            <label htmlFor="date-input">Date</label>
             <input
                 required
                 min={new Date().toISOString().slice(0, -8)}
-                id="dateInput"
+                id="date-input"
                 type="datetime-local"
                 data-test-id="orderTime"
                 onChange={handleDateAndTime}
