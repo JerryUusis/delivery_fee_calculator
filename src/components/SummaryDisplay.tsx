@@ -17,12 +17,41 @@ const SummaryDisplay: React.FC<SummaryProps> = ({
     deliveryTotal,
     price }) => {
 
+    if (orderValue >= 200) {
+        return (
+            <div>
+                <h2>Summary</h2>
+                <p>Cart value {orderValue} €</p>
+                <ul>
+                    <li>Free delivery!</li>
+                </ul>
+                {deliveryTotal ? <p>Delivery total {deliveryTotal} €</p> : null}
+                <p>Total: {price} €</p>
+            </div>
+        )
+    }
+
+    else if (deliveryTotal >= 15) {
+        return (
+            <div>
+                <h2>Summary</h2>
+                <p>Cart value {orderValue} €</p>
+                <ul>
+                    <li>Maximum delivery price {deliveryTotal}</li>
+                </ul>
+                {deliveryTotal ? <p>Delivery total {deliveryTotal} €</p> : null}
+                <p>Total: {price} €</p>
+            </div>
+        )
+    }
+
+
     return (
         <div>
             <h2>Summary</h2>
             <p>Cart value {orderValue} €</p>
             <ul>
-                {distanceSurcharge === 0 ? <li>Free delivery!</li> : <li>Distance cost {distanceSurcharge} €</li>}
+                {distanceSurcharge === 0 ? null : <li>Distance cost {distanceSurcharge} €</li>}
                 {itemsSurcharge === 0 ? null : <li>Extra items {itemsSurcharge} €</li>}
                 {smallPurchaseSurcharge === 0 ? null : <li>Small purchase fee {smallPurchaseSurcharge} €</li>}
                 {rushHour === true ? <li>Rush hour multiplier for surcharge fees: {parseFloat((deliveryTotal / 1.2).toFixed(2))} € x 1.2 = {parseFloat((deliveryTotal).toFixed(2))} € </li> : null}
