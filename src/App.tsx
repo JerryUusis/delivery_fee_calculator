@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import NumberInput from './components/NumberInput';
 import DateInput from './components/Date'
 import SummaryTypes from './types/SummaryTypes';
-import { DateTimeObject } from './types/DateObject';
 import SummaryDisplay from './components/SummaryDisplay';
 
 function App() {
@@ -10,7 +9,6 @@ function App() {
   const [deliveryDistance, setDeliveryDistance] = useState<number>(0);
   const [cartItems, setCartItems] = useState<number>(0);
   const [price, setPrice] = useState<number>(0);
-  const [date, setDate] = useState<DateTimeObject | null>(null)
   const [rushHour, setRushHour] = useState<boolean>(false)
   const [summary, setSummary] = useState<SummaryTypes>({
     orderValue: 0,
@@ -32,32 +30,26 @@ function App() {
     setState(newValue)
   }
 
-  const handleDateAndTime = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const selectedDate = event.target.value;
+  const handleDateAndTime = (event: React.ChangeEvent<HTMLInputElement>): string => {
     // selectedDate = "yyyy-mm-ddThh:mm"
-    const dateObject = new Date(selectedDate).toString();
+    const selectedDate = event.target.value;
     // dateObject sample "Wed Nov 27 2024 10:03:00 GMT+0200 (Eastern European Standard Time)"
+    const dateObjectString = new Date(selectedDate).toString();
 
-    const day = dateObject.split(" ")[2]
-    const month = dateObject.split(" ")[1].toLowerCase()
-    const year = dateObject.split(" ")[3]
-    const time = dateObject.split(" ")[4] // time is used to split to get hours and minutes
-    const weekday = dateObject.split(" ")[0].toLowerCase()
+    const time = dateObjectString.split(" ")[4] // time is used to split to get hours
+    const weekday = dateObjectString.split(" ")[0].toLowerCase()
 
     const hour = parseInt(time.split(":")[0])
-    const minute = parseInt(time.split(":")[1])
 
-    const dateTimeObject: DateTimeObject = {
-      day: day,
-      month: month,
-      year: year,
-      minute: minute,
+    const dateTimeObject: {
+      hour: number,
+      weekday: string
+    } = {
       hour: hour,
       weekday: weekday
     }
 
-    setDate(dateTimeObject)
-
+    // Determine if it's rush hour during Fridays from 15-19
     let isRushHour: boolean;
     if (dateTimeObject.weekday === "fri" && dateTimeObject.hour >= 15 && dateTimeObject.hour <= 19) {
       isRushHour = true
@@ -65,6 +57,8 @@ function App() {
       isRushHour = false;
     }
     setRushHour(isRushHour)
+
+    return dateObjectString
   }
 
   const smallPurchaseSurcharge = (cartItemsValue: number): number => {
@@ -207,15 +201,6 @@ function App() {
         {...summary}
         price={price}
       />
-
-      {/* <h2>Summary</h2>
-      <ul>
-        <li>Order value {summary.orderValue} €</li>
-        {summary.distanceSurcharge === 0 ? null : <li>Delivery {summary.distanceSurcharge} €</li>}
-        {summary.itemsSurcharge === 0 ? null : <li>Extra items {summary.itemsSurcharge} €</li>}
-        {summary.smallPurchaseSurcharge === 0 ? null :<li>Small purchase fee {summary.smallPurchaseSurcharge} €</li>}
-      </ul>
-      <p>Total: {price} €</p> */}
     </div>
   )
 }
