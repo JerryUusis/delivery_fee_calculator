@@ -1,17 +1,14 @@
+/* Fonts */
+
+/* font-family: 'Concert One', sans-serif; */
+/* font-family: "Noto Sans", sans-serif; */
+
 :root {
     --white: #def9ff;
     --lightest: #00C1E8;
     --mid: #00A1C2;
     --darkest: #004451;
 }
-
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
-
-
-/* font-family: 'Concert One', sans-serif; */
-
-/* Add more styles as needed */
 
 
 * {
