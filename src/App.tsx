@@ -56,16 +56,12 @@ function App() {
   }
 
   const smallPurchaseSurcharge = (cartItemsValue: number): number => {
-    let totalPrice: number;
-    totalPrice = cartItemsValue;
     let surcharge = 0;
 
     // Calculate surcharge for small order
-    if (totalPrice < 10) {
-      // Round to two decimals
-      surcharge = 10 - totalPrice;
-      totalPrice += surcharge
-      // Use the method below to print the correct rounding
+    if (cartItemsValue < 10) {
+      surcharge = 10 - cartItemsValue;
+      cartItemsValue += surcharge
     }
     return parseFloat(surcharge.toFixed(2))
   }
