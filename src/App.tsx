@@ -109,6 +109,7 @@ function App() {
       totalSurcharge *= 1.2
     }
 
+    // Free delivery for orders starting from 200e
     if (itemsValue >= 200) {
       totalSurcharge = 0;
       setSummary((previous) => ({
@@ -122,6 +123,7 @@ function App() {
       }))
       setPrice(itemsValue)
     }
+    // Maximum delivery cost
     else if (totalSurcharge > maximumDeliveryPrice) {
       totalSurcharge = maximumDeliveryPrice;
       setSummary((previous) => ({
