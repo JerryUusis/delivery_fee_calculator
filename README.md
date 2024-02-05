@@ -2,6 +2,8 @@
 
 This is my implementation of the Wolt 2024 preliminary assignment for a frontend development internship.
 
+It is hosted live [here](https://funny-meringue-7f38f9.netlify.app/) using Netlify.
+
 Full description for the requirements and details can be found at here [https://github.com/woltapp/engineering-internship-2024](https://github.com/woltapp/engineering-internship-2024)
 
 ## Dependencies
